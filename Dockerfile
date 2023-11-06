@@ -48,6 +48,9 @@ RUN \
 # add local files
 COPY /root /
 
+RUN \
+  echo '/etc/s6-overlay/s6-rc.d/init-adduser/volume' >> /etc/s6-overlay/s6-rc.d/init-adduser/run
+
 # ports and volumes
 EXPOSE 3000
 

@@ -1,0 +1,16 @@
+#!/usr/bin/with-contenv bash
+
+if [ -d "/tmp/.X11-unix" ]; then
+  chmod 1777 /tmp/.X11-unix
+fi
+
+if [ -n "$PULSE_RUNTIME_PATH" ]; then
+  PDIR=${PULSE_RUNTIME_PATH%/}
+  PDIR=${PDIR%/*}
+
+  if [ -n "$PDIR" ]; then
+    mkdir -p $PDIR
+    chmod 1777 $PDIR
+  fi
+fi
+
