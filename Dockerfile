@@ -45,6 +45,19 @@ RUN \
   rm -rf \
     /tmp/*
 
+RUN \
+  apk add --no-cache \
+    font-mononoki font-terminus font-inconsolata font-dejavu font-noto font-noto-cjk font-awesome font-noto-extra font-noto-emoji \
+    musl-locales lang firefox-intl && \
+  rm -rf \
+    /config/.cache \
+    /tmp/*
+
+RUN \
+  mkdir -p /usr/lib/firefox/distribution/extensions && \
+  curl -o /usr/lib/firefox/distribution/extensions/'langpack-zh-CN@firefox.mozilla.org.xpi' \
+    -L https://releases.mozilla.org/pub/firefox/releases/$(HOME=/dev/null firefox --version | grep -Eo '[0-9.]+$')/win64/xpi/zh-CN.xpi
+
 # add local files
 COPY /root /
 
